@@ -1,42 +1,38 @@
-# Scoop Bucket Template
+# var-gg scoop-bucket
 
-<!-- Uncomment the following line after replacing placeholders -->
-<!-- [![Tests](https://github.com/<username>/<bucketname>/actions/workflows/ci.yml/badge.svg)](https://github.com/<username>/<bucketname>/actions/workflows/ci.yml) [![Excavator](https://github.com/<username>/<bucketname>/actions/workflows/excavator.yml/badge.svg)](https://github.com/<username>/<bucketname>/actions/workflows/excavator.yml) -->
+[![Tests](https://github.com/var-gg/scoop-bucket/actions/workflows/ci.yml/badge.svg)](https://github.com/var-gg/scoop-bucket/actions/workflows/ci.yml) [![Excavator](https://github.com/var-gg/scoop-bucket/actions/workflows/excavator.yml/badge.svg)](https://github.com/var-gg/scoop-bucket/actions/workflows/excavator.yml)
 
-Template bucket for [Scoop](https://scoop.sh), the Windows command-line installer.
+A [Scoop](https://scoop.sh) bucket for var-gg apps.
 
-## How do I use this template?
-
-1. Generate your own copy of this repository with the "Use this template"
-   button.
-2. Allow all GitHub Actions:
-   - Navigate to `Settings` - `Actions` - `General` - `Actions permissions`.
-   - Select `Allow all actions and reusable workflows`.
-   - Then `Save`.
-3. Allow writing to the repository from within GitHub Actions:
-   - Navigate to `Settings` - `Actions` - `General` - `Workflow permissions`.
-   - Select `Read and write permissions`.
-   - Then `Save`.
-4. Document the bucket in `README.md`.
-5. Replace the placeholder repository string in `bin/auto-pr.ps1`.
-6. Create new manifests by copying `bucket/app-name.json.template` to
-   `bucket/<app-name>.json`.
-7. Commit and push changes.
-8. If you'd like your bucket to be indexed on `https://scoop.sh`, add the
-   topic `scoop-bucket` to your repository.
-
-## How do I install these manifests?
-
-After manifests have been committed and pushed, run the following:
+## Installation
 
 ```pwsh
-scoop bucket add <bucketname> https://github.com/<username>/<bucketname>
-scoop install <bucketname>/<manifestname>
+scoop bucket add var-gg https://github.com/var-gg/scoop-bucket
+scoop install var-gg/gitwink
 ```
 
-## How do I contribute new manifests?
+After the bucket is added once, install or update any app from it:
 
-To make a new manifest contribution, please read the [Contributing
-Guide](https://github.com/ScoopInstaller/.github/blob/main/.github/CONTRIBUTING.md)
-and [App Manifests](https://github.com/ScoopInstaller/Scoop/wiki/App-Manifests)
+```pwsh
+scoop update gitwink
+```
+
+## Apps
+
+| Name | Description |
+| ---- | ----------- |
+| [gitwink](https://github.com/var-gg/gitwink) | Tray-resident, read-only git glance for the AI-agent era. |
+
+## Notes
+
+- Manifests are kept current automatically by the [Excavator](.github/workflows/excavator.yml)
+  workflow, which runs every 4 hours.
+- `gitwink` is distributed as an unsigned MSI; Scoop verifies every download
+  against the SHA256 pinned in the manifest. Code signing via SignPath
+  Foundation is in progress.
+
+## Contributing
+
+See the [Contributing Guide](https://github.com/ScoopInstaller/.github/blob/main/.github/CONTRIBUTING.md)
+and the [App Manifests](https://github.com/ScoopInstaller/Scoop/wiki/App-Manifests)
 wiki page.
